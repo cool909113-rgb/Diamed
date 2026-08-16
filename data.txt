@@ -1,0 +1,1989 @@
+Пожалуйста, запиши полный массив данных со всеми позициями анализов напрямую в файл `src/data/mockData.ts`, чтобы в каталоге и поиске были доступны абсолютно все анализы из прайса с ценами в сомони (TJS) и описаниями:
+
+```typescript
+export interface AnalysisItem {
+  id: string;
+  name: string;
+  category: string;
+  subCategory?: string;
+  price: number;
+  turnaroundTimeDays: number;
+  biomaterial: string;
+  purpose: string;
+  whatItShows: string;
+  preparation: string;
+}
+
+export const CATEGORIES = [
+  { id: 'all', name: 'Все анализы' },
+  { id: 'biochemistry', name: 'Биохимия' },
+  { id: 'clinical', name: 'Общеклинические' },
+  { id: 'coagulation', name: 'Свертываемость крови' },
+  { id: 'hormones', name: 'Гормоны' },
+  { id: 'oncomarkers', name: 'Онкомаркеры' },
+  { id: 'vitamins_anemia', name: 'Витамины и анемия' },
+  { id: 'infections_pcr', name: 'Инфекции и ПЦР' },
+  { id: 'hepatitis', name: 'Гепатиты' },
+  { id: 'express', name: 'Экспресс-тесты' },
+  { id: 'bacteriology', name: 'Бактериология и посевы' },
+];
+
+export const ANALYSES_DATA: AnalysisItem[] = [
+  // БИОХИМИЯ: ПЕЧЁНОЧНЫЕ ТЕСТЫ
+  {
+    id: 'albumin',
+    name: 'Альбумин',
+    category: 'biochemistry',
+    subCategory: 'Печёночные тесты',
+    price: 34,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка белково-синтетической функции печени, диагностика отеков, заболеваний почек и истощения.',
+    whatItShows: 'Основной белок плазмы крови. Снижение указывает на поражение печени, нефротический синдром или нарушение питания.',
+    preparation: 'Сдавать строго натощак (8-12 часов голода), воду пить можно.'
+  },
+  {
+    id: 'alat',
+    name: 'АЛАТ (Аланинаминотрансфераза)',
+    category: 'biochemistry',
+    subCategory: 'Печёночные тесты',
+    price: 34,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Ключевой маркер повреждения клеток печени (гепатиты, токсические поражения, жировой гепатоз).',
+    whatItShows: 'Фермент печени. Повышение уровня свидетельствует о разрушении гепатоцитов.',
+    preparation: 'Натощак, за 24 часа исключить жирную пищу, алкоголь и тяжелые физические нагрузки.'
+  },
+  {
+    id: 'asat',
+    name: 'АСАТ (Аспартатаминотрансфераза)',
+    category: 'biochemistry',
+    subCategory: 'Печёночные тесты',
+    price: 34,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Диагностика заболеваний печени и сердечной мышцы (миокарда).',
+    whatItShows: 'Фермент, содержащийся в сердце и печени. Повышен при инфаркте миокарда, миокардитах, гепатитах.',
+    preparation: 'Натощак, исключить физические нагрузки и алкоголь за сутки до анализа.'
+  },
+  {
+    id: 'total_protein',
+    name: 'Белок общий',
+    category: 'biochemistry',
+    subCategory: 'Печёночные тесты',
+    price: 34,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка общего белкового обмена, иммунного статуса и работы внутренних органов.',
+    whatItShows: 'Концентрация всех белков крови. Отклонения бывают при патологии почек, печени, онкологии, инфекциях.',
+    preparation: 'Натощак (8-12 часов голода).'
+  },
+  {
+    id: 'bilirubin_direct',
+    name: 'Билирубин прямой (связанный)',
+    category: 'biochemistry',
+    subCategory: 'Печёночные тесты',
+    price: 34,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Диагностика механической желтухи, застоя желчи (холестаза), гепатитов.',
+    whatItShows: 'Фракция билирубина, прошедшая обработку в печени. Повышена при нарушении оттока желчи.',
+    preparation: 'Строго натощак, не менее 8 часов после последнего приема пищи.'
+  },
+  {
+    id: 'bilirubin_indirect',
+    name: 'Билирубин непрямой (свободный)',
+    category: 'biochemistry',
+    subCategory: 'Печёночные тесты',
+    price: 34,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Диагностика гемолитических анемий и синдрома Жильбера.',
+    whatItShows: 'Токсичная фракция билирубина. Растет при повышенном распаде эритроцитов или генетических сбоях печени.',
+    preparation: 'Строго натощак, накануне исключить жирное и физическое переутомление.'
+  },
+  {
+    id: 'bilirubin_total',
+    name: 'Билирубин общий',
+    category: 'biochemistry',
+    subCategory: 'Печёночные тесты',
+    price: 34,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Скрининг функции печени, желчевыводящих путей и гемолиза.',
+    whatItShows: 'Суммарный уровень прямого и непрямого билирубина.',
+    preparation: 'Строго натощак.'
+  },
+  {
+    id: 'bilirubin_combo',
+    name: 'Билирубин Комбо (общий, прямой и непрямой)',
+    category: 'biochemistry',
+    subCategory: 'Печёночные тесты',
+    price: 79,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Комплексная дифференциальная диагностика всех видов желтух и патологий печени.',
+    whatItShows: 'Полный профиль билирубинового обмена с расчетом всех фракций.',
+    preparation: 'Строго натощак (8-12 часов).'
+  },
+  {
+    id: 'iodine_test',
+    name: 'Йодная проба',
+    category: 'biochemistry',
+    subCategory: 'Печёночные тесты',
+    price: 25,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Осадочная проба для оценки коллоидной стабильности белков сыворотки при заболеваниях печени.',
+    whatItShows: 'Положительна при тяжелых воспалительных и цирротических процессах в печени.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'thymol_test',
+    name: 'Тимоловая проба',
+    category: 'biochemistry',
+    subCategory: 'Печёночные тесты',
+    price: 31,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка диспротеинемии при вирусных гепатитах, циррозе и коллагенозах.',
+    whatItShows: 'Повышается на ранних стадиях вирусного гепатита А и токсических поражений печени.',
+    preparation: 'Натощак (не менее 8 часов).'
+  },
+
+  // БИОХИМИЯ: УГЛЕВОДНЫЙ ОБМЕН
+  {
+    id: 'hba1c',
+    name: 'Гликированный гемоглобин (HbA1c)',
+    category: 'biochemistry',
+    subCategory: 'Углеводный обмен',
+    price: 79,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Золотой стандарт диагностики сахарного диабета и контроля за уровнем сахара за последние 3 месяца.',
+    whatItShows: 'Средний уровень глюкозы в крови за 90-120 дней.',
+    preparation: 'Рекомендуется сдавать натощак (или через 3-4 часа после легкого приема пищи).'
+  },
+  {
+    id: 'glucose_blood',
+    name: 'Глюкоза крови',
+    category: 'biochemistry',
+    subCategory: 'Углеводный обмен',
+    price: 28,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Базовая проверка сахара в крови, ранняя диагностика диабета и гипогликемии.',
+    whatItShows: 'Текущая концентрация глюкозы.',
+    preparation: 'Строго натощак утром (8-14 часов голода).'
+  },
+  {
+    id: 'glucose_urine',
+    name: 'Глюкоза в моче',
+    category: 'biochemistry',
+    subCategory: 'Углеводный обмен',
+    price: 20,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Моча (утренняя)',
+    purpose: 'Выявление глюкозурии при декомпенсированном диабете и почечном диабете.',
+    whatItShows: 'Появление сахара в моче при превышении почечного порога.',
+    preparation: 'Тщательный гигиенический туалет перед сбором средней порции утренней мочи.'
+  },
+  {
+    id: 'gtt',
+    name: 'Глюкозо-толерантный тест (ГТТ)',
+    category: 'biochemistry',
+    subCategory: 'Углеводный обмен',
+    price: 39,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь (серия заборов)',
+    purpose: 'Выявление скрытого диабета (преддиабета) и гестационного диабета у беременных.',
+    whatItShows: 'Динамика усвоения глюкозы организмом после нагрузки раствором глюкозы.',
+    preparation: 'Строго натощак. Процедура занимает 2 часа в лаборатории с забором до и после нагрузки.'
+  },
+
+  // БИОХИМИЯ: ЛИПИДНЫЙ ОБМЕН
+  {
+    id: 'atherogenic_index',
+    name: 'Коэффициент атерогенности',
+    category: 'biochemistry',
+    subCategory: 'Липидный обмен',
+    price: 51,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка риска развития атеросклероза, ишемической болезни сердца и инсульта.',
+    whatItShows: 'Соотношение «плохого» и «хорошего» холестерина в организме.',
+    preparation: 'Строго натощак (12 часов голода), за 24 часа исключить жирную пищу и алкоголь.'
+  },
+  {
+    id: 'hdl',
+    name: 'ЛПВП (Холестерин липопротеинов высокой плотности)',
+    category: 'biochemistry',
+    subCategory: 'Липидный обмен',
+    price: 34,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка уровня «хорошего» холестерина, защищающего сосуды от бляшек.',
+    whatItShows: 'Антиатерогенная фракция липидов. Снижение указывает на высокий риск ССЗ.',
+    preparation: 'Натощак (12 часов голодания).'
+  },
+  {
+    id: 'ldl',
+    name: 'ЛПНП (Холестерин липопротеинов низкой плотности)',
+    category: 'biochemistry',
+    subCategory: 'Липидный обмен',
+    price: 34,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка «плохого» холестерина, формирующего сосудистые бляшки.',
+    whatItShows: 'Главный маркер атеросклеротического поражения артерий.',
+    preparation: 'Натощак (12 часов).'
+  },
+  {
+    id: 'triglycerides',
+    name: 'Триглицериды',
+    category: 'biochemistry',
+    subCategory: 'Липидный обмен',
+    price: 37,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка нейтральных жиров в крови, риска панкреатита и сердечно-сосудистых патологий.',
+    whatItShows: 'Уровень накопления и транспорта жиров в кровеносном русле.',
+    preparation: 'Строго натощак (12-14 часов голода).'
+  },
+  {
+    id: 'cholesterol_total',
+    name: 'Холестерин общий',
+    category: 'biochemistry',
+    subCategory: 'Липидный обмен',
+    price: 37,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Базовый скрининг липидного обмена и риска атеросклероза.',
+    whatItShows: 'Суммарный уровень всех фракций холестерина.',
+    preparation: 'Натощак (12 часов).'
+  },
+
+  // РЕВМО-ПРОБЫ
+  {
+    id: 'aso',
+    name: 'Антистрептолизин-О (АСО)',
+    category: 'biochemistry',
+    subCategory: 'Ревмопробы',
+    price: 34,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Маркер перенесенной стрептококковой инфекции (ангина, скарлатина), риска ревматизма и гломерулонефрита.',
+    whatItShows: 'Наличие антител к токсину стрептококка.',
+    preparation: 'Натощак (8 часов).'
+  },
+  {
+    id: 'crp',
+    name: 'С-реактивный белок (СРБ)',
+    category: 'biochemistry',
+    subCategory: 'Ревмопробы',
+    price: 39,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Главный маркер острой фазы воспаления, бактериальной инфекции или повреждения тканей.',
+    whatItShows: 'Остро реагирует повышением на любой воспалительный процесс в организме.',
+    preparation: 'Натощак (не менее 4-8 часов).'
+  },
+  {
+    id: 'rf',
+    name: 'Ревматоидный фактор (РФ)',
+    category: 'biochemistry',
+    subCategory: 'Ревмопробы',
+    price: 34,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Диагностика ревматоидного артрита и аутоиммунных патологий соединительной ткани.',
+    whatItShows: 'Аутоантитела класса IgM к собственным иммуноглобулинам.',
+    preparation: 'Натощак.'
+  },
+
+  // ПОЧЕЧНЫЕ ТЕСТЫ
+  {
+    id: 'creatinine_blood',
+    name: 'Креатинин в крови',
+    category: 'biochemistry',
+    subCategory: 'Почечные тесты',
+    price: 34,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка фильтрационной функции почек и мышечного метаболизма.',
+    whatItShows: 'Повышение свидетельствует о почечной недостаточности.',
+    preparation: 'Натощак, за сутки избегать избытка мяса в рационе и тяжелых тренировок.'
+  },
+  {
+    id: 'creatinine_urine',
+    name: 'Креатинин в суточной моче',
+    category: 'biochemistry',
+    subCategory: 'Почечные тесты',
+    price: 34,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Суточная моча',
+    purpose: 'Оценка выделительной способности почек.',
+    whatItShows: 'Суточный объем экскреции креатинина почками.',
+    preparation: 'Сбор всей мочи за 24 часа в один контейнер с фиксацией общего объема.'
+  },
+  {
+    id: 'urea_blood',
+    name: 'Мочевина в крови',
+    category: 'biochemistry',
+    subCategory: 'Почечные тесты',
+    price: 34,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка выделительной функции почек и распада белка.',
+    whatItShows: 'Продукт белкового обмена; накапливается при нарушении фильтрации в почках.',
+    preparation: 'Натощак (8 часов).'
+  },
+  {
+    id: 'urea_urine',
+    name: 'Мочевина в суточной моче',
+    category: 'biochemistry',
+    subCategory: 'Почечные тесты',
+    price: 34,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Суточная моча',
+    purpose: 'Оценка белкового баланса и почечной экскреции азотистых шлаков.',
+    whatItShows: 'Скорость выведения мочевины почками.',
+    preparation: 'Сбор мочи за 24 часа по правилам.'
+  },
+  {
+    id: 'uric_acid',
+    name: 'Мочевая кислота',
+    category: 'biochemistry',
+    subCategory: 'Почечные тесты',
+    price: 34,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Диагностика подагры, мочекаменной болезни и нарушений пуринового обмена.',
+    whatItShows: 'Повышена при подагре и риске отложения уратов в суставах и почках.',
+    preparation: 'Натощак, за 2-3 дня исключить печень, алкоголь, шоколад, бобовые.'
+  },
+  {
+    id: 'microalbuminuria',
+    name: 'Микроальбуминурия (альбумин в моче)',
+    category: 'biochemistry',
+    subCategory: 'Почечные тесты',
+    price: 47,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Моча',
+    purpose: 'Раннее выявление поражения почек при диабете (диабетическая нефропатия) и гипертонии.',
+    whatItShows: 'Микроскопические утечки белка через почечный фильтр.',
+    preparation: 'Утренняя или суточная порция мочи после тщательной гигиены.'
+  },
+  {
+    id: 'rehberg_test',
+    name: 'Проба Реберга (клиренс эндогенного креатинина)',
+    category: 'biochemistry',
+    subCategory: 'Почечные тесты',
+    price: 45,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Кровь + суточная моча',
+    purpose: 'Точная оценка скорости клубочковой фильтрации (СКФ) и канальцевой реабсорбции.',
+    whatItShows: 'Реальная работоспособность клубочков почек.',
+    preparation: 'Сбор суточной мочи + утренний забор крови натощак.'
+  },
+
+  // ФЕРМЕНТЫ И ЭЛЕКТРОЛИТЫ
+  {
+    id: 'amylase_blood',
+    name: 'Амилаза крови',
+    category: 'biochemistry',
+    subCategory: 'Ферменты',
+    price: 39,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Диагностика острого и хронического панкреатита, заболеваний слюнных желез.',
+    whatItShows: 'Фермент поджелудочной железы, резко возрастает при ее воспалении.',
+    preparation: 'Строго натощак.'
+  },
+  {
+    id: 'amylase_urine',
+    name: 'Амилаза (диастаза) в моче',
+    category: 'biochemistry',
+    subCategory: 'Ферменты',
+    price: 39,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Моча',
+    purpose: 'Быстрое подтверждение острого воспаления поджелудочной железы.',
+    whatItShows: 'Высокая активность диастазы характерна для острого панкреатита.',
+    preparation: 'Свежая порция мочи.'
+  },
+  {
+    id: 'alp',
+    name: 'Щелочная фосфатаза (ЩФ)',
+    category: 'biochemistry',
+    subCategory: 'Ферменты',
+    price: 30,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Диагностика патологий печени (холестаз) и костной ткани (рахит, остеопороз).',
+    whatItShows: 'Фермент костей и желчных путей. Повышен при застое желчи и метастазах в кости.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'ketones_urine',
+    name: 'Кетоны в моче',
+    category: 'biochemistry',
+    subCategory: 'Ферменты',
+    price: 20,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Моча',
+    purpose: 'Диагностика кетоацидоза при диабете, голодании и интоксикациях у детей.',
+    whatItShows: 'Наличие ацетона и кетоновых тел.',
+    preparation: 'Утренняя моча.'
+  },
+  {
+    id: 'iron_serum',
+    name: 'Железо сывороточное',
+    category: 'biochemistry',
+    subCategory: 'Электролиты',
+    price: 34,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Диагностика железодефицитной анемии и гемохроматоза.',
+    whatItShows: 'Уровень свободного железа в сыворотке.',
+    preparation: 'Строго натощак до 10:00 утра.'
+  },
+  {
+    id: 'potassium',
+    name: 'Калий (K+)',
+    category: 'biochemistry',
+    subCategory: 'Электролиты',
+    price: 31,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Контроль сердечного ритма, работы мышц, баланса электролитов при приеме диуретиков.',
+    whatItShows: 'Опасные отклонения (аритмии, мышечная слабость).',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'calcium_total',
+    name: 'Кальций общий',
+    category: 'biochemistry',
+    subCategory: 'Электролиты',
+    price: 31,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Диагностика остеопороза, нарушений свертывания, работы паращитовидных желез.',
+    whatItShows: 'Основной минерал костной ткани и нервно-мышечной передачи.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'magnesium',
+    name: 'Магний',
+    category: 'biochemistry',
+    subCategory: 'Электролиты',
+    price: 31,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка причин судорог, хронической усталости, нарушений сна и сердечного ритма.',
+    whatItShows: 'Концентрация магния в плазме.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'sodium',
+    name: 'Натрий (Na+)',
+    category: 'biochemistry',
+    subCategory: 'Электролиты',
+    price: 34,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка водно-солевого баланса, осмолярности плазмы и работы надпочечников.',
+    whatItShows: 'Уровень основного внеклеточного катиона.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'phosphorus',
+    name: 'Фосфор неорганический',
+    category: 'biochemistry',
+    subCategory: 'Электролиты',
+    price: 30,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка фосфорно-кальциевого обмена при патологии костей и почек.',
+    whatItShows: 'Уровень фосфатов в крови.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'zinc',
+    name: 'Цинк',
+    category: 'biochemistry',
+    subCategory: 'Электролиты',
+    price: 79,
+    turnaroundTimeDays: 2,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка иммунитета, состояния кожи, волос, репродуктивной системы мужчин.',
+    whatItShows: 'Дефицит или избыток эссенциального микроэлемента.',
+    preparation: 'Натощак (не принимать препараты цинка за 3-5 дней).'
+  },
+
+  // СВЁРТЫВАЮЩАЯ СИСТЕМА (КОАГУЛОГРАММА)
+  {
+    id: 'inr',
+    name: 'МНО (Международное нормализованное отношение)',
+    category: 'coagulation',
+    price: 28,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь (цитрат)',
+    purpose: 'Контроль терапии антикоагулянтами (Варфарин) и оценка свертывания.',
+    whatItShows: 'Стандартизированный показатель внешнего пути свертывания.',
+    preparation: 'Натощак, указать дозировку принимаемых препаратов.'
+  },
+  {
+    id: 'aptt',
+    name: 'АЧТВ (Активированное частичное тромбопластиновое время)',
+    category: 'coagulation',
+    price: 28,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь (цитрат)',
+    purpose: 'Оценка внутреннего пути свертывания, контроль гепаринотерапии, перед операцией.',
+    whatItShows: 'Время формирования сгустка крови.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'pti',
+    name: 'ПТИ (Протромбиновый индекс)',
+    category: 'coagulation',
+    price: 28,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Скрининг свертывающей системы перед операциями, при беременности и патологиях печени.',
+    whatItShows: 'Процентное отношение времени свертывания плазмы к норме.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'pi',
+    name: 'ПИ (Протромбиновый индекс / Протромбин)',
+    category: 'coagulation',
+    price: 28,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка факторов протромбинового комплекса.',
+    whatItShows: 'Активность протромбина в плазме.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'd_dimer',
+    name: 'Д-Димер',
+    category: 'coagulation',
+    price: 96,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Исключение тромбоза глубоких вен, ТЭЛА, ДВС-синдрома, осложнений при COVID-19 и беременности.',
+    whatItShows: 'Маркер активного тромбообразования и разрушения фибринового сгустка.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'fibrinogen',
+    name: 'Фибриноген',
+    category: 'coagulation',
+    price: 24,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка первого фактора свертывания и острофазного воспаления.',
+    whatItShows: 'Снижен при кровотечениях/ДВС, повышен при тромбозах и воспалении.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'clotting_sukharev',
+    name: 'Свертываемость крови по Сухареву',
+    category: 'coagulation',
+    price: 11,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Капиллярная кровь',
+    purpose: 'Быстрая предоперационная оценка времени свертывания.',
+    whatItShows: 'Начало и конец образования фибринового сгустка.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'clotting_lee_white',
+    name: 'Время свёртывания крови по Ли-Уайту',
+    category: 'coagulation',
+    price: 11,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка спонтанного свертывания венозной крови.',
+    whatItShows: 'Суммарная активность внутренней системы коагуляции.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'blood_group_rh',
+    name: 'Группа крови и резус-фактор (комплекс)',
+    category: 'coagulation',
+    price: 17,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Определение группы крови (AB0) и Rh-принадлежности перед переливанием, операциями, при беременности.',
+    whatItShows: 'Группа крови I, II, III, IV и положительный/отрицательный резус.',
+    preparation: 'Специальной подготовки не требуется.'
+  },
+  {
+    id: 'blood_group',
+    name: 'Группа крови (AB0)',
+    category: 'coagulation',
+    price: 11,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Определение групповой принадлежности по системе AB0.',
+    whatItShows: 'Агглютиногены эритроцитов.',
+    preparation: 'Не требуется.'
+  },
+  {
+    id: 'rh_factor',
+    name: 'Резус-фактор (Rh)',
+    category: 'coagulation',
+    price: 11,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Определение наличия антигена D.',
+    whatItShows: 'Rh(+) или Rh(-).',
+    preparation: 'Не требуется.'
+  },
+
+  // КЛИНИЧЕСКИЕ ИССЛЕДОВАНИЯ
+  {
+    id: 'cbc_3diff',
+    name: 'Общий анализ крови (ОАК 3-diff)',
+    category: 'clinical',
+    price: 34,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная / капиллярная кровь',
+    purpose: 'Базовый скрининг здоровья: гемоглобин, эритроциты, тромбоциты, лейкоциты.',
+    whatItShows: 'Анемия, острые воспалительные процессы, состояние иммунитета.',
+    preparation: 'Натощак (8 часов).'
+  },
+  {
+    id: 'cbc_5diff',
+    name: 'Общий анализ крови развернутый (ОАК 5-diff)',
+    category: 'clinical',
+    price: 45,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Полная лейкоцитарная формула с разделением на 5 популяций.',
+    whatItShows: 'Точная дифференциация вирусной, бактериальной, аллергической инфекции или гематологических патологий.',
+    preparation: 'Натощак (8 часов).'
+  },
+  {
+    id: 'esr',
+    name: 'Скорость оседания эритроцитов (СОЭ)',
+    category: 'clinical',
+    price: 17,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная / капиллярная кровь',
+    purpose: 'Маркер воспалительных, инфекционных и аутоиммунных процессов.',
+    whatItShows: 'Скорость разделения крови на плазму и клетки; растет при воспалении.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'urinalysis_general',
+    name: 'Общий анализ мочи (ОАМ с микроскопией осадка)',
+    category: 'clinical',
+    price: 28,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Утренняя моча',
+    purpose: 'Комплексная оценка функции почек, мочевыводящих путей и общего метаболизма.',
+    whatItShows: 'Белок, лейкоциты, эритроциты, цилиндры, соли, бактерии, плотность.',
+    preparation: 'Тщательный гигиенический туалет, сбор средней порции утренней мочи в стерильный контейнер.'
+  },
+  {
+    id: 'two_glass_urine',
+    name: 'Двухстаканная проба мочи',
+    category: 'clinical',
+    price: 39,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Моча (две порции)',
+    purpose: 'Локализация воспаления в мочевыделительной системе.',
+    whatItShows: 'Сравнение лейкоцитов и эритроцитов в 1-й и 2-й порциях.',
+    preparation: 'Сбор мочи непрерывной струей в две емкости.'
+  },
+  {
+    id: 'three_glass_urine',
+    name: 'Трехстаканная проба мочи',
+    category: 'clinical',
+    price: 39,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Моча (три порции)',
+    purpose: 'Точная диагностика уретрита, цистита или простатита у мужчин.',
+    whatItShows: 'Выявление очага воспаления (уретра, мочевой пузырь, предстательная железа).',
+    preparation: 'Сбор утренней мочи в 3 контейнера последовательно.'
+  },
+  {
+    id: 'bile_pigments_urine',
+    name: 'Определение желчных пигментов в моче',
+    category: 'clinical',
+    price: 17,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Моча',
+    purpose: 'Выявление поражений печени и обтурации желчных протоков.',
+    whatItShows: 'Наличие билирубина и уробилиногена в моче.',
+    preparation: 'Свежая порция утренней мочи.'
+  },
+  {
+    id: 'zimnitsky_test',
+    name: 'Проба мочи по Зимницкому',
+    category: 'clinical',
+    price: 25,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Моча (8 порций за сутки)',
+    purpose: 'Оценка концентрационной и выделительной способности почек.',
+    whatItShows: 'Колебания плотности и объема мочи в течение суток (день/ночь).',
+    preparation: 'Сбор 8 порций мочи каждые 3 часа в отдельные подписанные контейнеры.'
+  },
+  {
+    id: 'nechiporenko_test',
+    name: 'Проба мочи по Нечипоренко',
+    category: 'clinical',
+    price: 25,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Средняя порция мочи',
+    purpose: 'Количественный подсчет лейкоцитов, эритроцитов и цилиндров в 1 мл мочи при скрытом воспалении.',
+    whatItShows: 'Пиелонефрит, гломерулонефрит.',
+    preparation: 'Средняя утренняя порция после гигиены.'
+  },
+  {
+    id: 'stool_general',
+    name: 'Общий анализ кала (Копрограмма)',
+    category: 'clinical',
+    price: 28,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Кал',
+    purpose: 'Оценка переваривающей способности желудка, кишечника, функции поджелудочной железы и печени.',
+    whatItShows: 'Мышечные волокна, жиры, крахмал, слизь, скрытое воспаление ЖКТ.',
+    preparation: 'Сбор в стерильный контейнер без клизм и слабительных.'
+  },
+  {
+    id: 'stool_helminths',
+    name: 'Кал на яйца глистов и простейшие',
+    category: 'clinical',
+    price: 28,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Кал',
+    purpose: 'Диагностика гельминтозов (аскариды, острицы и др.) и паразитов (лямблии, амебы).',
+    whatItShows: 'Наличие яиц паразитов или цист простейших.',
+    preparation: 'Свежий кал из разных участков каловых масс.'
+  },
+  {
+    id: 'stool_occult_blood',
+    name: 'Кал на скрытую кровь',
+    category: 'clinical',
+    price: 19,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Кал',
+    purpose: 'Скрининг скрытых кровотечений из ЖКТ (язвы, полипы, онкология толстой кишки).',
+    whatItShows: 'Микроскопические следы гемоглобина в кале.',
+    preparation: 'За 3 дня исключить мясо, рыбу, зелень, железосодержащие препараты.'
+  },
+  {
+    id: 'smear_flora',
+    name: 'Мазок на флору (микроскопия отделяемого)',
+    category: 'clinical',
+    price: 28,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Урогенитальный мазок',
+    purpose: 'Оценка микрофлоры влагалища/уретры, лейкоцитов, выявление воспаления и молочницы.',
+    whatItShows: 'Степень чистоты, флора (палочки, кокки), грибы Candida, трихомонады, гонококки.',
+    preparation: '24-48 часов воздержаться от половых контактов, не использовать свечи/мази.'
+  },
+  {
+    id: 'prostate_fluid',
+    name: 'Анализ секрета (сока) простаты',
+    category: 'clinical',
+    price: 51,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Секрет предстательной железы',
+    purpose: 'Диагностика простатита у мужчин, оценка воспалительного процесса.',
+    whatItShows: 'Лейкоциты, лецитиновые зерна, наличие микрофлоры.',
+    preparation: 'Воздержание от эякуляции 3-5 дней, забор производится врачом-урологом.'
+  },
+  {
+    id: 'spermogram',
+    name: 'Спермограмма',
+    category: 'clinical',
+    price: 100,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Эякулят',
+    purpose: 'Оценка фертильности мужчины и диагностика причин бесплодия.',
+    whatItShows: 'Количество, подвижность, морфология сперматозоидов, вязкость, жизнеспособность.',
+    preparation: 'Строгое половое воздержание от 3 до 5 дней, исключить алкоголь, бани, сауны за 7 дней.'
+  },
+
+  // ГОРМОНЫ
+  {
+    id: 'acth',
+    name: 'Адренокортикотропный гормон (АКТГ)',
+    category: 'hormones',
+    price: 100,
+    turnaroundTimeDays: 2,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Диагностика болезней гипофиза и надпочечников.',
+    whatItShows: 'Регулятор выработки кортизола.',
+    preparation: 'Строго натощак до 09:00 утра, исключить стресс и нагрузки.'
+  },
+  {
+    id: 'asa_antibodies',
+    name: 'Антиспермальные антитела (АСА)',
+    category: 'hormones',
+    price: 136,
+    turnaroundTimeDays: 2,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Диагностика иммунологического бесплодия у мужчин и женщин.',
+    whatItShows: 'Антитела, атакующие сперматозоиды и препятствующие оплодотворению.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'amh',
+    name: 'Антимюллеровский гормон (АМГ)',
+    category: 'hormones',
+    price: 399,
+    turnaroundTimeDays: 2,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка овариального резерва (запаса яйцеклеток) у женщин, планирование ЭКО.',
+    whatItShows: 'Количество фолликулов, готовых к созреванию.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'anti_tg',
+    name: 'Антитела к тиреоглобулину (АТ-ТГ)',
+    category: 'hormones',
+    price: 91,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Диагностика аутоиммунных заболеваний щитовидной железы.',
+    whatItShows: 'Аутоагрессия иммунитета против предшественника тиреоидных гормонов.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'shbg_sssg',
+    name: 'Секс-стероид-связывающий глобулин (СССГ / ГСПС)',
+    category: 'hormones',
+    price: 228,
+    turnaroundTimeDays: 2,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка уровня свободного биологически активного тестостерона.',
+    whatItShows: 'Белок, связывающий половые гормоны в крови.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'anti_tpo',
+    name: 'Антитела к пероксидазе тиреоцитов (АТ-ТПО)',
+    category: 'hormones',
+    price: 91,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Главный маркер аутоиммунного тиреоидита и риска гипотиреоза.',
+    whatItShows: 'Антитела, разрушающие фермент синтеза гормонов щитовидной железы.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'papp_a',
+    name: 'Ассоциированный с беременностью белок плазмы (ПАПП-А / PAPP-A)',
+    category: 'hormones',
+    price: 92,
+    turnaroundTimeDays: 2,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Пренатальный скрининг I триместра (риск хромосомных аномалий плода).',
+    whatItShows: 'Белок плазмы при беременности (11-14 неделя).',
+    preparation: 'Натощак, указать точный срок беременности и данные УЗИ.'
+  },
+  {
+    id: 'dhea_s',
+    name: 'Дегидроэпиандростерон-сульфат (ДЭАС / DHEA-S)',
+    category: 'hormones',
+    price: 102,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка выработки андрогенов надпочечниками.',
+    whatItShows: 'Гормон надпочечников, предшественник половых стероидов.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'insulin',
+    name: 'Инсулин',
+    category: 'hormones',
+    price: 91,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Диагностика инсулинорезистентности, метаболического синдрома, гипогликемии.',
+    whatItShows: 'Уровень гормона поджелудочной железы, регулирующего сахар.',
+    preparation: 'Строго натощак утром.'
+  },
+  {
+    id: 'pth',
+    name: 'Интактный паратиреоидный гормон (паратгормон / ПТГ)',
+    category: 'hormones',
+    price: 171,
+    turnaroundTimeDays: 2,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Регуляция обмена кальция и фосфора, диагностика остеопороза.',
+    whatItShows: 'Гормон паращитовидных желез.',
+    preparation: 'Натощак утром.'
+  },
+  {
+    id: 'cortisol',
+    name: 'Кортизол',
+    category: 'hormones',
+    price: 91,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Гормон стресса. Диагностика синдрома Кушинга и надпочечниковой недостаточности.',
+    whatItShows: 'Уровень глюкокортикоидов коры надпочечников.',
+    preparation: 'Строго натощак до 09:00 утра в состоянии эмоционального покоя.'
+  },
+  {
+    id: 'lh',
+    name: 'Лютеинизирующий гормон (ЛГ)',
+    category: 'hormones',
+    price: 101,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Контроль овуляции, менструального цикла, фертильности.',
+    whatItShows: 'Гормон гипофиза, стимулирующий овуляцию.',
+    preparation: 'Натощак (2-5 день цикла у женщин).'
+  },
+  {
+    id: 't4_total',
+    name: 'Общий тироксин (Т4 общий)',
+    category: 'hormones',
+    price: 85,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка суммарной выработки гормонов щитовидной железы.',
+    whatItShows: 'Сумма связанного и свободного тироксина.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 't3_total',
+    name: 'Общий трийодтиронин (Т3 общий)',
+    category: 'hormones',
+    price: 85,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Диагностика Т3-тиреотоксикоза.',
+    whatItShows: 'Суммарный уровень активного гормона щитовидки.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'progesterone',
+    name: 'Прогестерон',
+    category: 'hormones',
+    price: 101,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка овуляции и функции желтого тела.',
+    whatItShows: 'Гормон второй фазы цикла (21-23 день цикла).',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'prolactin',
+    name: 'Пролактин',
+    category: 'hormones',
+    price: 101,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Выявление причин бесплодия, выделений из молочных желез, аденомы гипофиза.',
+    whatItShows: 'Гормон лактации и репродуктивной функции.',
+    preparation: 'Натощак через 2 часа после пробуждения, исключить накануне стресс и секс.'
+  },
+  {
+    id: 't4_free',
+    name: 'Свободный тироксин (Т4 свободный)',
+    category: 'hormones',
+    price: 85,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Ключевой показатель работы щитовидной железы при гипо- или гипертиреозе.',
+    whatItShows: 'Биологически активная несвязанная фракция тироксина.',
+    preparation: 'Натощак утром.'
+  },
+  {
+    id: 't3_free',
+    name: 'Свободный трийодтиронин (Т3 свободный)',
+    category: 'hormones',
+    price: 85,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка тиреотоксикоза.',
+    whatItShows: 'Активная фракция трийодтиронина.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'hgh_stg',
+    name: 'Соматотропный гормон (СТГ / Гормон роста)',
+    category: 'hormones',
+    price: 102,
+    turnaroundTimeDays: 2,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Диагностика нарушений роста у детей и акромегалии у взрослых.',
+    whatItShows: 'Уровень анаболического гормона роста гипофиза.',
+    preparation: 'Строго натощак в покое.'
+  },
+  {
+    id: 'c_peptide',
+    name: 'С-пептид',
+    category: 'hormones',
+    price: 79,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка собственной выработки инсулина поджелудочной железой.',
+    whatItShows: 'Фрагмент молекулы проинсулина.',
+    preparation: 'Строго натощак.'
+  },
+  {
+    id: 'testosterone',
+    name: 'Тестостерон общий',
+    category: 'hormones',
+    price: 101,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка мужского андрогенного статуса и гиперандрогении у женщин.',
+    whatItShows: 'Главный мужской половой стероидный гормон.',
+    preparation: 'Натощак до 11:00 утра.'
+  },
+  {
+    id: 'tsh',
+    name: 'Тиреотропный гормон (ТТГ)',
+    category: 'hormones',
+    price: 85,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Главный базовый скрининг щитовидной железы.',
+    whatItShows: 'Гормон гипофиза, управляющий функцией щитовидной железы.',
+    preparation: 'Натощак утром.'
+  },
+  {
+    id: 'fsh',
+    name: 'Фолликулостимулирующий гормон (ФСГ)',
+    category: 'hormones',
+    price: 101,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка созревания фолликулов у женщин и сперматогенеза у мужчин.',
+    whatItShows: 'Гормон гипофиза, стимулирующий половые железы.',
+    preparation: 'Натощак (2-5 день цикла).'
+  },
+  {
+    id: 'hcg',
+    name: 'Хорионический гонадотропин человека (ХГЧ общий / бета-ХГЧ)',
+    category: 'hormones',
+    price: 79,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Раннее определение беременности (с 6-8 дня после зачатия), мониторинг ее развития.',
+    whatItShows: 'Гормон эмбриона и плаценты.',
+    preparation: 'Натощак или через 4-5 часов после еды.'
+  },
+  {
+    id: 'estradiol',
+    name: 'Эстрадиол (E2)',
+    category: 'hormones',
+    price: 101,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка работы яичников, созревания эндометрия.',
+    whatItShows: 'Основной женский эстрогенный гормон.',
+    preparation: 'Натощак (2-5 или 21-23 день цикла).'
+  },
+  {
+    id: 'estriol_free',
+    name: 'Эстриол свободный',
+    category: 'hormones',
+    price: 91,
+    turnaroundTimeDays: 2,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка состояния фетоплацентарного комплекса во II триместре беременности.',
+    whatItShows: 'Гормон беременности, отражающий состояние плода.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: '17_oh_progesterone',
+    name: '17-ОН-прогестерон',
+    category: 'hormones',
+    price: 114,
+    turnaroundTimeDays: 2,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Диагностика дисфункции коры надпочечников, акне, гирсутизма и бесплодия.',
+    whatItShows: 'Промежуточный стероид синтеза кортизола.',
+    preparation: 'Натощак на 3-5 день цикла.'
+  },
+
+  // ОНКОМАРКЕРЫ
+  {
+    id: 'afp_onco',
+    name: 'Альфа-фетопротеин (АФП) — печень, яичники, яички',
+    category: 'oncomarkers',
+    price: 102,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Маркер первичного рака печени и опухолей половых желез.',
+    whatItShows: 'Опухолевый эмбриональный белок.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'psa_total',
+    name: 'Простат-специфический антиген (ПСА общий) — простата',
+    category: 'oncomarkers',
+    price: 102,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Главный ежегодный онкоскрининг рака предстательной железы у мужчин 40+.',
+    whatItShows: 'Специфический маркер тканей простаты.',
+    preparation: 'Натощак. 48 часов исключить эякуляцию, велосипед, массаж простаты.'
+  },
+  {
+    id: 'psa_free',
+    name: 'Свободный простат-специфический антиген (ПСА свободный)',
+    category: 'oncomarkers',
+    price: 102,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Дифференциация рака простаты от доброкачественной гиперплазии.',
+    whatItShows: 'Несвязанная фракция ПСА.',
+    preparation: 'Та же, что и для ПСА общего.'
+  },
+  {
+    id: 'ca_15_3',
+    name: 'СА 15-3 — молочная железа',
+    category: 'oncomarkers',
+    price: 102,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Мониторинг эффективности лечения и рецидивов рака молочной железы.',
+    whatItShows: 'Опухолевый муцин молочной железы.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'ca_125',
+    name: 'СА 125 — яичники',
+    category: 'oncomarkers',
+    price: 102,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Онкомаркер рака яичников, мониторинг терапии и эндометриоза.',
+    whatItShows: 'Гликопротеин эпителия яичников.',
+    preparation: 'Натощак (не сдавать во время менструации).'
+  },
+  {
+    id: 'ca_19_9',
+    name: 'СА 19-9 — поджелудочная железа, ЖКТ',
+    category: 'oncomarkers',
+    price: 102,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Маркер рака поджелудочной железы, желчных путей и желудка.',
+    whatItShows: 'Опухолевый антиген эпителия органов ЖКТ.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'roma_he4',
+    name: 'ROMA (индекс ROMA / HE-4 + CA-125)',
+    category: 'oncomarkers',
+    price: 182,
+    turnaroundTimeDays: 2,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Точная оценка риска эпителиального рака яичников.',
+    whatItShows: 'Математический алгоритм на основе белков HE4 и CA-125.',
+    preparation: 'Натощак.'
+  },
+
+  // ВИТАМИНЫ И ДИАГНОСТИКА АНЕМИЙ
+  {
+    id: 'vitamin_d',
+    name: 'Витамин D (25-OH D2/D3 суммарный)',
+    category: 'vitamins_anemia',
+    price: 140,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка статуса витамина D (иммунитет, кости, энергия).',
+    whatItShows: 'Дефицит, недостаточность или норма ключевого прогормона.',
+    preparation: 'Натощак (8 часов).'
+  },
+  {
+    id: 'vitamin_b12',
+    name: 'Витамин B12 (цианокобаламин)',
+    category: 'vitamins_anemia',
+    price: 79,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Диагностика B12-дефицитной анемии и неврологических расстройств.',
+    whatItShows: 'Уровень кобаламина, необходимого для кроветворения.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'ferritin',
+    name: 'Ферритин (депо железа)',
+    category: 'vitamins_anemia',
+    price: 85,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Самый точный маркер скрытого дефицита железа и воспаления.',
+    whatItShows: 'Реальные запасы железа в тканях.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'folic_acid',
+    name: 'Фолиевая кислота (Витамин B9)',
+    category: 'vitamins_anemia',
+    price: 68,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Планирование беременности, диагностика анемий.',
+    whatItShows: 'Уровень фолатов в сыворотке крови.',
+    preparation: 'Натощак.'
+  },
+
+  // ЭКСПРЕСС ТЕСТЫ
+  {
+    id: 'express_hep_b',
+    name: 'Экспресс-тест: Гепатит B (HBsAg)',
+    category: 'express',
+    price: 34,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Кровь',
+    purpose: 'Быстрый качественный скрининг гепатита B.',
+    whatItShows: 'Положительно / Отрицательно.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'express_hep_c',
+    name: 'Экспресс-тест: Гепатит C (Anti-HCV)',
+    category: 'express',
+    price: 34,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Кровь',
+    purpose: 'Быстрый скрининг антител к гепатиту C.',
+    whatItShows: 'Положительно / Отрицательно.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'express_hiv',
+    name: 'Экспресс-тест: ВИЧ (HIV 1/2)',
+    category: 'express',
+    price: 34,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Кровь',
+    purpose: 'Экспресс-выявление антител и антигена к ВИЧ.',
+    whatItShows: 'Положительно / Отрицательно.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'express_rw',
+    name: 'Экспресс-тест: Сифилис (RW / микрореакция)',
+    category: 'express',
+    price: 34,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Кровь',
+    purpose: 'Быстрый скрининг сифилиса перед госпитализацией.',
+    whatItShows: 'Положительно / Отрицательно.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'express_combi_4',
+    name: 'Комби-тест 4-в-1 (Гепатит B, C, ВИЧ, RW/Сифилис)',
+    category: 'express',
+    price: 111,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Госпитальный комплекс инфекций в 1 клик.',
+    whatItShows: 'Суммарный отчет по 4 инфекциям.',
+    preparation: 'Натощак.'
+  },
+
+  // ТОРЧ И ЗПП
+  {
+    id: 'torch_complex',
+    name: 'ТОРЧ-комплекс (TORCH: Хламидиоз, Токсоплазмоз, Краснуха, ЦМВ, ВПГ)',
+    category: 'infections_pcr',
+    subCategory: 'TORCH',
+    price: 285,
+    turnaroundTimeDays: 2,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Комплекс при планировании беременности и скрининге внутриутробных инфекций.',
+    whatItShows: 'Иммунитет и фаза инфекции (IgM / IgG).',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'swab_ureaplasma',
+    name: 'Мазок на ЗПП: Уреаплазма',
+    category: 'infections_pcr',
+    subCategory: 'Мазки ЗПП',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Урогенитальный соскоб',
+    purpose: 'Выявление возбудителя уреаплазмоза.',
+    whatItShows: 'Обнаружено / Не обнаружено.',
+    preparation: 'Не мочиться за 2-3 часа до забора.'
+  },
+  {
+    id: 'swab_mycoplasma',
+    name: 'Мазок на ЗПП: Микоплазмоз',
+    category: 'infections_pcr',
+    subCategory: 'Мазки ЗПП',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Урогенитальный соскоб',
+    purpose: 'Диагностика микоплазменной инфекции.',
+    whatItShows: 'Обнаружено / Не обнаружено.',
+    preparation: '2-3 часа без мочеиспускания.'
+  },
+  {
+    id: 'swab_chlamydia',
+    name: 'Мазок на ЗПП: Хламидиоз',
+    category: 'infections_pcr',
+    subCategory: 'Мазки ЗПП',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Урогенитальный соскоб',
+    purpose: 'Диагностика урогенитального хламидиоза.',
+    whatItShows: 'Обнаружено / Не обнаружено.',
+    preparation: '2-3 часа без мочеиспускания.'
+  },
+  {
+    id: 'swab_cmv',
+    name: 'Мазок на ЗПП: Цитомегаловирус (ЦМВ)',
+    category: 'infections_pcr',
+    subCategory: 'Мазки ЗПП',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Урогенитальный соскоб',
+    purpose: 'Выявление цитомегаловируса в урогенитальном тракте.',
+    whatItShows: 'Обнаружено / Не обнаружено.',
+    preparation: 'Стандартная подготовка.'
+  },
+  {
+    id: 'swab_hsv',
+    name: 'Мазок на ЗПП: Вирус простого герпеса (ВПГ 1-2)',
+    category: 'infections_pcr',
+    subCategory: 'Мазки ЗПП',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Соскоб / отделяемое',
+    purpose: 'Диагностика генитального герпеса.',
+    whatItShows: 'Обнаружено / Не обнаружено.',
+    preparation: 'Не обрабатывать очаги антисептиками.'
+  },
+  {
+    id: 'swab_gardnerella',
+    name: 'Мазок на ЗПП: Гарднереллез',
+    category: 'infections_pcr',
+    subCategory: 'Мазки ЗПП',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Урогенитальный соскоб',
+    purpose: 'Диагностика бактериального вагиноза.',
+    whatItShows: 'Обнаружено / Не обнаружено.',
+    preparation: 'Воздержание от секса за 24 часа.'
+  },
+  {
+    id: 'swab_candida',
+    name: 'Мазок на ЗПП: Кандидоз (Молочница)',
+    category: 'infections_pcr',
+    subCategory: 'Мазки ЗПП',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Урогенитальный соскоб',
+    purpose: 'Выявление грибкового поражения слизистых оболочек.',
+    whatItShows: 'Обнаружено / Не обнаружено.',
+    preparation: 'Без свечей и спринцеваний за 48 часов.'
+  },
+
+  // КАРДИОМАРКЕРЫ
+  {
+    id: 'troponin_i',
+    name: 'Тропонин-I (Маркер повреждения миокарда)',
+    category: 'biochemistry',
+    subCategory: 'Кардиомаркеры',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Экстренная диагностика инфаркта миокарда.',
+    whatItShows: 'Маркер гибели кардиомиоцитов.',
+    preparation: 'Кровь берется в любое время при подозрении на инфаркт.'
+  },
+
+  // ИНФЕКЦИИ И ИФА
+  {
+    id: 'hsv_igm',
+    name: 'Вирус простого герпеса (ВПГ 1-2) IgM',
+    category: 'infections_pcr',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Маркер острой стадии герпетической инфекции.',
+    whatItShows: 'Острофазные антитела IgM.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'hsv_igg',
+    name: 'Вирус простого герпеса (ВПГ 1-2) IgG',
+    category: 'infections_pcr',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка наличия длительного иммунитета / носительства.',
+    whatItShows: 'Антитела памяти IgG.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'ebv_igm',
+    name: 'Вирус Эпштейна-Барр (ВЭБ) IgM',
+    category: 'infections_pcr',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Диагностика острого инфекционного мононуклеоза.',
+    whatItShows: 'Острая фаза инфекции.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'ebv_igg',
+    name: 'Вирус Эпштейна-Барр (ВЭБ) IgG',
+    category: 'infections_pcr',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Подтверждение перенесенной инфекции или вирусоносительства.',
+    whatItShows: 'Антитела хронической стадии.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'gardnerella_igg',
+    name: 'Гарднереллез IgG',
+    category: 'infections_pcr',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Определение иммунного ответа на гарднереллу.',
+    whatItShows: 'Титр IgG.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'candida_igg',
+    name: 'Кандидоз IgG',
+    category: 'infections_pcr',
+    price: 39,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Диагностика системного кандидоза.',
+    whatItShows: 'Иммунный ответ на Candida.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'rubella_igm',
+    name: 'Краснуха IgM',
+    category: 'infections_pcr',
+    price: 59,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Диагностика острой краснухи при беременности.',
+    whatItShows: 'Маркер первичного заражения.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'rubella_igg',
+    name: 'Краснуха IgG',
+    category: 'infections_pcr',
+    price: 59,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Проверка защитного иммунитета к краснухе.',
+    whatItShows: 'Титр антител IgG.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'mycoplasma_igm',
+    name: 'Микоплазмоз IgM',
+    category: 'infections_pcr',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Выявление острой микоплазменной инфекции.',
+    whatItShows: 'Острофазные антитела IgM.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'mycoplasma_igg',
+    name: 'Микоплазмоз IgG',
+    category: 'infections_pcr',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Выявление хронического микоплазмоза.',
+    whatItShows: 'Антитела IgG.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'cmv_igm',
+    name: 'Цитомегаловирус (ЦМВ) IgM',
+    category: 'infections_pcr',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Выявление острой стадии ЦМВ.',
+    whatItShows: 'Маркер активности вируса.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'cmv_igg',
+    name: 'Цитомегаловирус (ЦМВ) IgG',
+    category: 'infections_pcr',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Определение антител к ЦМВ.',
+    whatItShows: 'Титр IgG памяти.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'pneumo_chlamydia_igg',
+    name: 'Пневмохламидиоз IgG (Chlamydia pneumoniae)',
+    category: 'infections_pcr',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Диагностика атипичной пневмонии и затяжного кашля.',
+    whatItShows: 'Антитела к респираторной хламидии.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'syphilis_total_ab',
+    name: 'Сифилис (суммарные антитела ИФА)',
+    category: 'infections_pcr',
+    price: 45,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Высокочувствительная диагностика сифилиса.',
+    whatItShows: 'Суммарные антитела к Treponema pallidum.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'toxoplasma_igm',
+    name: 'Токсоплазмоз IgM',
+    category: 'infections_pcr',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Диагностика первичного токсоплазмоза при беременности.',
+    whatItShows: 'Маркер свежего заражения.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'toxoplasma_igg',
+    name: 'Токсоплазмоз IgG',
+    category: 'infections_pcr',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка наличия иммунитета к токсоплазме.',
+    whatItShows: 'Титр IgG.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'trichomonas',
+    name: 'Трихомониаз',
+    category: 'infections_pcr',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь / соскоб',
+    purpose: 'Диагностика трихомониаза.',
+    whatItShows: 'Антитела или ДНК возбудителя.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'ureaplasma_igm',
+    name: 'Уреаплазмоз IgM',
+    category: 'infections_pcr',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Выявление острой фазы уреаплазмы.',
+    whatItShows: 'Антитела IgM.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'ureaplasma_igg',
+    name: 'Уреаплазмоз IgG',
+    category: 'infections_pcr',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка хронического носительства уреаплазмы.',
+    whatItShows: 'Антитела IgG.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'chlamydia_trachomatis_igm',
+    name: 'Хламидиоз трахоматис IgM',
+    category: 'infections_pcr',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Выявление острой фазы хламидиоза.',
+    whatItShows: 'Острофазные антитела IgM.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'chlamydia_trachomatis_igg',
+    name: 'Хламидиоз трахоматис IgG',
+    category: 'infections_pcr',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка перенесенного или хронического хламидиоза.',
+    whatItShows: 'Антитела IgG.',
+    preparation: 'Натощак.'
+  },
+
+  // ГЕПАТИТЫ
+  {
+    id: 'hav_igm',
+    name: 'Гепатит А (анти-HAV IgM)',
+    category: 'hepatitis',
+    price: 54,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Маркер острой стадии гепатита А.',
+    whatItShows: 'Острое инфицирование вирусом гепатита А.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'hav_igg',
+    name: 'Гепатит А (анти-HAV IgG)',
+    category: 'hepatitis',
+    price: 54,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка стойкого иммунитета к гепатиту А.',
+    whatItShows: 'Защитные антитела IgG.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'hbsag',
+    name: 'Гепатит В (HBsAg)',
+    category: 'hepatitis',
+    price: 54,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Основной маркер острого и хронического гепатита В.',
+    whatItShows: 'Поверхностный антиген HBsAg.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'anti_hbsag',
+    name: 'Гепатит В (анти-HBsAg)',
+    category: 'hepatitis',
+    price: 54,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Оценка поствакцинального иммунитета к гепатиту В.',
+    whatItShows: 'Защитные антитела.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'anti_hbc_igm',
+    name: 'Гепатит В (анти-HBcAg IgM)',
+    category: 'hepatitis',
+    price: 54,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Маркер острой фазы или обострения гепатита В.',
+    whatItShows: 'Ядерные антитела IgM.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'anti_hbc_igg',
+    name: 'Гепатит В (анти-HBcAg IgG)',
+    category: 'hepatitis',
+    price: 54,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Маркер контакта с вирусом гепатита В в прошлом.',
+    whatItShows: 'Ядерные антитела IgG.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'anti_hbc_total',
+    name: 'Гепатит В (анти-HBcAg суммарные)',
+    category: 'hepatitis',
+    price: 54,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Суммарный маркер инфицирования гепатитом В.',
+    whatItShows: 'Суммарные антитела core.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'hbeag',
+    name: 'Гепатит В (HBeAg)',
+    category: 'hepatitis',
+    price: 54,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Маркер активной репликации вируса гепатита В.',
+    whatItShows: 'Высокая инфекционность и активность вируса.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'anti_hbeag',
+    name: 'Гепатит В (анти-HBeAg)',
+    category: 'hepatitis',
+    price: 54,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Снижение вирусной активности и начало ремиссии.',
+    whatItShows: 'Сероконверсия по HBeAg.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'hcv_spectrum',
+    name: 'Спектр антител гепатита С (anti-cor HCV IgG, NS3, NS4, NS5)',
+    category: 'hepatitis',
+    price: 193,
+    turnaroundTimeDays: 2,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Развернутый профиль антител к белкам вируса гепатита С.',
+    whatItShows: 'Дифференциация фаз инфекции.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'anti_hcv',
+    name: 'Гепатит С (суммарные антитела anti-HCV)',
+    category: 'hepatitis',
+    price: 54,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Скрининговое выявление антител к вирусу гепатита С.',
+    whatItShows: 'Положительно / Отрицательно.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'hdv_igm',
+    name: 'Гепатит D (анти-HDV IgM)',
+    category: 'hepatitis',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Диагностика острой дельта-инфекции.',
+    whatItShows: 'Острая фаза гепатита D.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'hdv_igg',
+    name: 'Гепатит D (анти-HDV IgG)',
+    category: 'hepatitis',
+    price: 57,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Определение хронической дельта-инфекции.',
+    whatItShows: 'Хронический гепатит D.',
+    preparation: 'Натощак.'
+  },
+
+  // ПЦР ДИАГНОСТИКА
+  {
+    id: 'pcr_hbv',
+    name: 'ПЦР: Вирус гепатита В (ДНК качественный и количественный)',
+    category: 'infections_pcr',
+    subCategory: 'ПЦР',
+    price: 410,
+    turnaroundTimeDays: 3,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Определение точной вирусной нагрузки гепатита В.',
+    whatItShows: 'Концентрация ДНК вируса гепатита В в МЕ/мл.',
+    preparation: 'Строго натощак.'
+  },
+  {
+    id: 'pcr_hcv_quant',
+    name: 'ПЦР: Вирус гепатита С (РНК количественный)',
+    category: 'infections_pcr',
+    subCategory: 'ПЦР',
+    price: 433,
+    turnaroundTimeDays: 3,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Определение вирусной нагрузки гепатита С для контроля терапии.',
+    whatItShows: 'Количество РНК вируса гепатита С в крови (МЕ/мл).',
+    preparation: 'Строго натощак.'
+  },
+  {
+    id: 'pcr_hcv_genotype',
+    name: 'ПЦР: Вирус гепатита С (Генотипирование)',
+    category: 'infections_pcr',
+    subCategory: 'ПЦР',
+    price: 285,
+    turnaroundTimeDays: 3,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Определение генотипа (1, 2, 3) для подбора схемы лечения.',
+    whatItShows: 'Генотип вируса гепатита С.',
+    preparation: 'Натощак.'
+  },
+
+  // БАКТЕРИОЛОГИЯ И ПОСЕВЫ
+  {
+    id: 'brucellosis_test',
+    name: 'Бруцеллез (реакция Хеддельсона-Райта)',
+    category: 'bacteriology',
+    price: 40,
+    turnaroundTimeDays: 2,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Диагностика бруцеллеза при суставных болях и лихорадке.',
+    whatItShows: 'Титр агглютинирующих антител к Brucella.',
+    preparation: 'Натощак.'
+  },
+  {
+    id: 'demodex_microscopy',
+    name: 'Микроскопия на демодекс (ресницы / соскоб)',
+    category: 'bacteriology',
+    price: 17,
+    turnaroundTimeDays: 1,
+    biomaterial: 'Ресницы / соскоб кожи',
+    purpose: 'Диагностика демодекоза при зуде век и высыпаниях.',
+    whatItShows: 'Обнаружение клеща Demodex.',
+    preparation: '24 часа не умываться мылом и не наносить косметику.'
+  },
+  {
+    id: 'blood_hemoculture',
+    name: 'Кровь на гемокультуру (бакпосев крови)',
+    category: 'bacteriology',
+    price: 79,
+    turnaroundTimeDays: 5,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Выявление бактериемии и сепсиса.',
+    whatItShows: 'Рост патогенных бактерий в русле крови.',
+    preparation: 'Забор на высоте температуры до начала антибиотиков.'
+  },
+  {
+    id: 'blood_sterility',
+    name: 'Кровь на стерильность',
+    category: 'bacteriology',
+    price: 79,
+    turnaroundTimeDays: 5,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Подтверждение стерильности крови.',
+    whatItShows: 'Стерильно / Обнаружен рост.',
+    preparation: 'Забор до приема антибиотиков.'
+  },
+  {
+    id: 'blood_sensitivity',
+    name: 'Кровь на чувствительность к антибиотикам',
+    category: 'bacteriology',
+    price: 79,
+    turnaroundTimeDays: 5,
+    biomaterial: 'Венозная кровь',
+    purpose: 'Подбор антибиотикограммы при бактериемии.',
+    whatItShows: 'Чувствительность к антибиотикам.',
+    preparation: 'По назначению.'
+  },
+  {
+    id: 'breast_milk_sterility',
+    name: 'Грудное молоко на стерильность и микрофлору',
+    category: 'bacteriology',
+    price: 159,
+    turnaroundTimeDays: 4,
+    biomaterial: 'Грудное молоко',
+    purpose: 'Диагностика мастита и дисбиоза.',
+    whatItShows: 'Титр бактерий (КОЕ/мл).',
+    preparation: 'Сцеживание в стерильные контейнеры отдельно из каждой железы.'
+  },
+  {
+    id: 'culture_ent',
+    name: 'Бак. посев отделяемого ЛОР-органов с антибиотикограммой',
+    category: 'bacteriology',
+    price: 91,
+    turnaroundTimeDays: 4,
+    biomaterial: 'Мазок из зева / носа / уха',
+    purpose: 'Выявление возбудителя ангины, отита, синусита.',
+    whatItShows: 'Вид бактерий и чувствительность к антибиотикам.',
+    preparation: 'Строго натощак (не есть, не пить, не чистить зубы перед мазком).'
+  },
+  {
+    id: 'culture_sputum',
+    name: 'Бак. посев мокроты с антибиотикограммой',
+    category: 'bacteriology',
+    price: 79,
+    turnaroundTimeDays: 4,
+    biomaterial: 'Утренняя мокрота',
+    purpose: 'Диагностика бактериального бронхита и пневмонии.',
+    whatItShows: 'Патогенная микрофлора и антибиотикограмма.',
+    preparation: 'Сбор откашливаемой мокроты после полоскания рта водой.'
+  },
+  {
+    id: 'stool_dysentery',
+    name: 'Кал на дизгруппу (сальмонеллез, дизентерия)',
+    category: 'bacteriology',
+    price: 120,
+    turnaroundTimeDays: 4,
+    biomaterial: 'Кал',
+    purpose: 'Диагностика острых кишечных инфекций.',
+    whatItShows: 'Выделение сальмонелл и шигелл.',
+    preparation: 'Сбор свежего кала до антибиотиков.'
+  },
+  {
+    id: 'stool_sensitivity',
+    name: 'Кал на чувствительность к антибиотикам',
+    category: 'bacteriology',
+    price: 79,
+    turnaroundTimeDays: 4,
+    biomaterial: 'Кал',
+    purpose: 'Подбор антибиотиков при кишечных инфекциях.',
+    whatItShows: 'Антибиотикограмма.',
+    preparation: 'Стерильный контейнер.'
+  },
+  {
+    id: 'urine_cfu',
+    name: 'Бакпосев мочи на микрофлору (КОЭ) с титром',
+    category: 'bacteriology',
+    price: 79,
+    turnaroundTimeDays: 4,
+    biomaterial: 'Средняя порция мочи',
+    purpose: 'Диагностика инфекций почек и мочевого пузыря.',
+    whatItShows: 'Титр бактерий (КОЕ/мл).',
+    preparation: 'Средняя утренняя порция в стерильный контейнер.'
+  },
+  {
+    id: 'urine_cfu_no_ab',
+    name: 'Бакпосев мочи на КОЭ без чувствительности',
+    category: 'bacteriology',
+    price: 79,
+    turnaroundTimeDays: 4,
+    biomaterial: 'Средняя порция мочи',
+    purpose: 'Оценка степени бактериурии.',
+    whatItShows: 'Титр микроорганизмов.',
+    preparation: 'Сбор средней порции.'
+  },
+  {
+    id: 'urine_sensitivity',
+    name: 'Моча на чувствительность к антибиотикам',
+    category: 'bacteriology',
+    price: 79,
+    turnaroundTimeDays: 4,
+    biomaterial: 'Средняя порция мочи',
+    purpose: 'Подбор уросептиков при циститах и пиелонефритах.',
+    whatItShows: 'Спектр чувствительных антибиотиков.',
+    preparation: 'Сбор до начала приема препаратов.'
+  },
+  {
+    id: 'culture_cervical',
+    name: 'Бак. посев из цервикального канала с антибиотикограммой',
+    category: 'bacteriology',
+    price: 91,
+    turnaroundTimeDays: 4,
+    biomaterial: 'Отделяемое цервикального канала',
+    purpose: 'Диагностика инфекций шейки матки и бесплодия.',
+    whatItShows: 'Микрофлора и чувствительность к препаратам.',
+    preparation: '48 часов без свечей и половых контактов.'
+  },
+  {
+    id: 'culture_wound',
+    name: 'Бак. посев отделяемого раны с антибиотикограммой',
+    category: 'bacteriology',
+    price: 79,
+    turnaroundTimeDays: 4,
+    biomaterial: 'Отделяемое раны',
+    purpose: 'Подбор терапии при нагноении раны.',
+    whatItShows: 'Возбудитель и эффективные препараты.',
+    preparation: 'Забор до нанесения мазей.'
+  }
+];
